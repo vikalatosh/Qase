@@ -13,6 +13,8 @@ import static com.codeborne.selenide.Selenide.open;
 public class ProjectsPage extends BasePage {
     public static final SelenideElement USER_MENU_IMAGE = $("#user-menu");
     public static final SelenideElement CREATE_NEW_PROJECT_BUTTON = $("#createButton");
+    public static final SelenideElement SEARCH_INPUT = $("[name='title']");
+
     String locatorProjectName = "//*[text()='%s']";
 
     public boolean isPageOpened() {
@@ -24,6 +26,7 @@ public class ProjectsPage extends BasePage {
     }
 
     public void checkProject(Project project) {
+        SEARCH_INPUT.setValue(project.getProjectName());
         $(byXpath(String.format(locatorProjectName, project.getProjectName()))).shouldBe(Condition.visible);
     }
 
