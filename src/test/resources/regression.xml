@@ -12,6 +12,7 @@
         <parameter name="browser" value="chrome"></parameter>
         <classes>
             <class name="ProjectTest"/>
+            <class name="ApiTest"/>
         </classes>
     </test> <!-- Test -->
 </suite>
