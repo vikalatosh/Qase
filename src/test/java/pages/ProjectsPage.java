@@ -35,9 +35,8 @@ public class ProjectsPage extends BasePage {
         $(CREATE_NEW_PROJECT_BUTTON).click();
     }
 
-    public ProjectDetailsPage openProjectDetailsPage(Project project) {
+    public void openProjectDetailsPage(Project project) {
         $(byText(project.getTitle())).click();
-        return new ProjectDetailsPage();
     }
 
     public void checkProjectIsDeleted(Project project) {
