@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import lombok.extern.log4j.Log4j2;
 import models.Project;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -26,11 +27,21 @@ public class ProjectsPage extends BasePage {
     }
 
     public void checkProject(Project project) {
-        SEARCH_INPUT.setValue(project.getProjectName());
-        $(byXpath(String.format(locatorProjectName, project.getProjectName()))).shouldBe(Condition.visible);
+        SEARCH_INPUT.setValue(project.getTitle());
+        $(byXpath(String.format(locatorProjectName, project.getTitle()))).shouldBe(Condition.visible);
     }
 
     public void clickButtonCreateNewProject() {
         $(CREATE_NEW_PROJECT_BUTTON).click();
+    }
+
+    public ProjectDetailsPage openProjectDetailsPage(Project project) {
+        $(byText(project.getTitle())).click();
+        return new ProjectDetailsPage();
+    }
+
+    public void checkProjectIsDeleted(Project project) {
+        SEARCH_INPUT.setValue(project.getTitle());
+        $(byXpath(String.format(locatorProjectName, project.getTitle()))).shouldNotBe(Condition.visible);
     }
 }

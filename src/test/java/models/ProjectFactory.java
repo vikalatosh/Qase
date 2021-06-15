@@ -8,8 +8,8 @@ public class ProjectFactory {
         Faker faker = new Faker();
         String name = faker.app().name();
         return Project.builder()
-                .projectName(name)
-                .projectCode(name)
+                .title(name)
+                .code(name)
                 .description("This is project test " + name)
                 .build();
     }

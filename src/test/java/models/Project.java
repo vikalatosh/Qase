@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 @Builder
 public class Project {
-    String projectName, projectCode, description;
+    String title, code, description, type, memberType, access, group;
 }
