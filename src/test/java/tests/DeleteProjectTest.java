@@ -1,11 +1,14 @@
+package tests;
+
 import models.Project;
 import models.ProjectFactory;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
 
-public class UpdateProjectTest extends BaseTest {
+public class DeleteProjectTest extends BaseTest {
 
-    @Test
-    public void updateProject() {
+    @Test(description = "Project should be deleted")
+    public void deleteProject() {
         loginPage.openLoginPage();
         loginPage.isPageOpened();
         loginPage.login(user, password);
@@ -20,8 +23,9 @@ public class UpdateProjectTest extends BaseTest {
         projectDetailsPage.isPageOpened();
         projectDetailsPage.openSettings();
         projectSettingsPage.isPageOpened();
-        projectSettingsPage.changeProjectData();
-        projectSettingsPage.clickUpdateSettings();
-        projectSettingsPage.projectIsUpdated();
+        projectSettingsPage.clickDeleteProject();
+        projectSettingsPage.clickDeleteProject();
+        projectsPage.isPageOpened();
+        projectsPage.checkProjectIsDeleted(project);
     }
 }

@@ -1,12 +1,14 @@
 package adapters;
 
 import com.google.gson.Gson;
+import io.qameta.allure.Step;
 
 import static io.restassured.RestAssured.given;
 
 public class BaseAdapter {
     Gson gson = new Gson();
 
+    @Step("Perform post")
     public String post(String body, int status, String url) {
         return
                 given().
@@ -22,6 +24,7 @@ public class BaseAdapter {
                         extract().body().asString();
     }
 
+    @Step("Perform get")
     public String get(int status, String url) {
         return
                 given().

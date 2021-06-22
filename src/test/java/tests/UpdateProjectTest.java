@@ -1,11 +1,14 @@
+package tests;
+
 import models.Project;
 import models.ProjectFactory;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
 
-public class ProjectTest extends BaseTest {
+public class UpdateProjectTest extends BaseTest {
 
-    @Test
-    public void projectShouldBeCreated() {
+    @Test(description = "Project should be updated")
+    public void updateProject() {
         loginPage.openLoginPage();
         loginPage.isPageOpened();
         loginPage.login(user, password);
@@ -16,5 +19,12 @@ public class ProjectTest extends BaseTest {
         projectListPage.createProject(project);
         projectsPage.openProjectsPage();
         projectsPage.checkProject(project);
+        projectsPage.openProjectDetailsPage(project);
+        projectDetailsPage.isPageOpened();
+        projectDetailsPage.openSettings();
+        projectSettingsPage.isPageOpened();
+        projectSettingsPage.changeProjectData();
+        projectSettingsPage.clickUpdateSettings();
+        projectSettingsPage.projectIsUpdated();
     }
 }
