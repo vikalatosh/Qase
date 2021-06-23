@@ -1,19 +1,22 @@
+package tests;
+
 import models.Project;
 import models.ProjectFactory;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
 
 public class ProjectTest extends BaseTest {
 
-    @Test
+    @Test(description = "Project should be created")
     public void projectShouldBeCreated() {
         loginPage.openLoginPage();
         loginPage.isPageOpened();
         loginPage.login(user, password);
         projectsPage.isPageOpened();
         projectsPage.clickButtonCreateNewProject();
-        newProjectPage.isPageOpened();
+        projectListPage.isPageOpened();
         Project project = ProjectFactory.get();
-        newProjectPage.createProject(project);
+        projectListPage.createProject(project);
         projectsPage.openProjectsPage();
         projectsPage.checkProject(project);
     }
